@@ -5,51 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الصفحة الرئيسية</title>
     <style>
-/* إعدادات عامة */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* إعدادات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* إعدادات الجسم */
-body {
-    font-family: 'Arial', sans-serif; /* تغيير الخط */
-    color: #fff;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* محاذاة المحتوى إلى المنتصف */
-    background-color: #1e1e1e; /* لون الخلفية الجديد */
-    overflow: hidden;
-    position: relative;
-}
+        /* إعدادات الجسم */
+        body {
+            font-family: 'Arial', sans-serif; /* تغيير الخط */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* محاذاة المحتوى إلى المنتصف */
+            background-color: #1e1e1e; /* لون الخلفية الجديد */
+            overflow: hidden;
+            height: 100vh;
+        }
 
-/* طبقة داكنة فوق الخلفية */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(30, 30, 30, 0.8); /* لون داكن مع شفافية */
-    z-index: 0;
-}
+        /* طبقة داكنة فوق الخلفية */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 30, 30, 0.8); /* لون داكن مع شفافية */
+            z-index: 0;
+        }
 
-/* خلفية الصورة */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://almerja.com/medea/aklam/R/v16982236519662059959.jpg') no-repeat center center fixed; /* خلفية جديدة */
-    background-size: cover;
-    z-index: -1;
-}
-
+        /* خلفية الصورة */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://almerja.com/medea/aklam/R/v16982236519662059959.jpg') no-repeat center center fixed; /* خلفية جديدة */
+            background-size: cover;
+            z-index: -1;
+        }
 /* شريط التنقل */
 .navbar {
     position: fixed;
@@ -153,102 +150,104 @@ body::before {
     }
 }
 
-/* قسم الترحيب */
-.welcome-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-    position: relative;
-    z-index: 1;
-    flex-grow: 1; /* لجعل المحتوى يمتد مع الصفحة */
-}
+        /* قسم الترحيب */
+        .welcome-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+            flex-grow: 1; /* لجعل المحتوى يمتد مع الصفحة */
+        }
 
-/* تكبير نص الترحيب */
-.greeting-text {
-    font-size: 60px; /* حجم نص مختلف */
-    margin-bottom: 20px;
-}
+        /* تكبير نص الترحيب */
+        .greeting-text {
+            font-size: 60px; /* حجم نص مختلف */
+            margin-bottom: 20px;
+        }
 
-/* تأثير الكتابة */
-.typing-text {
-    font-size: 26px;
-    color: #ff6347; /* لون جديد */
-}
+        /* تأثير الكتابة */
+        .typing-text {
+            font-size: 26px;
+            color: #ff6347; /* لون جديد */
+        }
 
-.typing-cursor {
-    font-weight: bold; /* جعل المؤشر أكثر وضوحاً */
-    font-size: 26px;
-    opacity: 1;
-    animation: blink 0.7s infinite;
-}
+        .typing-cursor {
+            font-weight: bold; /* جعل المؤشر أكثر وضوحاً */
+            font-size: 26px;
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
 
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-}
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
 
-/* تحسين زر CTA */
-.cta-button {
-    background: #ff6347; /* لون جديد */
-    color: #fff;
-    padding: 15px 30px; /* تغيير الحشوة */
-    border: none;
-    border-radius: 10px; /* زوايا أكثر نعومة */
-    font-size: 24px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    margin: 15px; /* تعديل المسافة */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-}
+        /* تحسين زر CTA */
+        .cta-button {
+            background: #ff6347; /* لون جديد */
+            color: #fff;
+            padding: 15px 30px; /* تغيير الحشوة */
+            border: none;
+            border-radius: 10px; /* زوايا أكثر نعومة */
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            margin: 15px; /* تعديل المسافة */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
 
-.cta-button:hover {
-    background: #e55300; /* لون جديد عند التحويم */
-    transform: scale(1.05);
-}
-
+        .cta-button:hover {
+            background: #e55300; /* لون جديد عند التحويم */
+            transform: scale(1.05);
+        }
 
         /* الفوتر */
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 15px; /* تعديل الحشوة */
             font-size: 16px;
-            background: rgba(0, 0, 0, 0.9);
-            border-top: 4px solid #ff6347;
+            background: rgba(50, 50, 50, 0.9);
+            border-top: 4px solid #ff6347; /* لون جديد */
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 10;
             width: 100%;
         }
-        
+
         .footer p {
             margin: 0;
-            color: #ff6347;
-            font-size: 18px;
+            color: #ff6347; /* لون جديد */
+            font-size: 20px; /* زيادة حجم النص */
             line-height: 1.5;
         }
 
+        /* تحسينات عامة للشاشات الصغيرة */
+        @media (max-width: 480px) {
+            .greeting-text {
+                font-size: 50px; /* تقليل حجم النص */
+            }
 
-/* تحسينات عامة للشاشات الصغيرة */
-@media (max-width: 480px) {
-    .greeting-text {
-        font-size: 50px; /* تقليل حجم النص */
-    }
+            .typing-text {
+                font-size: 22px; /* تقليل حجم النص */
+            }
 
-    .typing-text {
-        font-size: 22px; /* تقليل حجم النص */
-    }
+            .cta-button {
+                font-size: 20px; /* تقليل حجم الزر */
+                padding: 10px 25px; /* تعديل الحشوة */
+            }
 
-    .cta-button {
-        font-size: 20px; /* تقليل حجم الزر */
-        padding: 10px 25px; /* تعديل الحشوة */
-    }
-}
+            .footer {
+                padding: 10px; /* تعديل الحشوة */
+            }
+        }
 
     </style>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -287,18 +286,17 @@ body::before {
     </footer>
 
     <script>
-    // تأثير الكتابة
-var typed = new Typed(".typing", {
-    strings: [
-        "Don't fear Amr is here",
-        "المكهرب واحد بس",
-        "أنت و السيطرة تحت الفيزياء!"
-    ],
-    typeSpeed: 50,
-    backSpeed: 25,
-    loop: true
-});
-
+        // تأثير الكتابة
+        var typed = new Typed(".typing", {
+            strings: [
+                "Don't fear Amr is here",
+                "المكهرب واحد بس",
+                "أنت و السيطرة تحت الفيزياء!"
+            ],
+            typeSpeed: 50,
+            backSpeed: 25,
+            loop: true
+        });
 
         // فتح وغلق القائمة في الشاشات الصغيرة
         document.getElementById('menu-toggle').addEventListener('click', function () {
