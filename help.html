@@ -34,7 +34,7 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(30, 30, 30, 0.8); /* لون داكن مع شفافية */
-    z-index: 0;
+    z-index: -1;
 }
 
 /* خلفية الصورة */
@@ -49,6 +49,11 @@ body::before {
     background-size: cover;
     z-index: -1;
 }
+
+        body, html {
+    overflow-x: hidden;
+}
+
 
 /* شريط التنقل */
 .navbar {
@@ -343,6 +348,14 @@ body, html {
     font-size: 18px;
     line-height: 1.5;
 }
+
+        @media (max-width: 480px) {
+    .footer p {
+        font-size: 14px;
+        line-height: 1.3;
+    }
+}
+
 
 /* تحسين العرض على الشاشات الصغيرة */
 @media (max-width: 768px) {
