@@ -270,7 +270,8 @@ body {
 /* التصميم المتجاوب */
 @media (max-width: 600px) {
     body {
-        padding: 10px; /* إضافة حشوة للصفحة */
+        padding: 15px; /* تقليل padding حول المحتوى */
+        overflow-x: hidden; /* منع التمرير الأفقي */
     }
 
     .navbar {
@@ -311,6 +312,8 @@ body {
         margin-bottom: 10px; /* إضافة مساحة بين الحقول */
     }
 }
+
+
 
 /* الفوتر */
 .footer {
@@ -366,6 +369,15 @@ body {
         line-height: 1.3;
     }
 }
+
+
+/* تحسين العرض على الشاشات الصغيرة */
+@media (max-width: 600px) {
+        .footer {
+        padding: 15px; /* تقليل padding في الفوتر */
+        font-size: 14px; /* تقليل حجم الخط في الفوتر */
+    }
+
 
     </style>
     <!-- روابط لأيقونات التواصل الاجتماعي -->
