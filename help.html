@@ -4,56 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المساعدة - التواصل</title>
-    <style>
-
-        /* إعدادات عامة */
+    <style>/* إعدادات عامة */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* إعدادات الجسم */
 body {
-    font-family: 'Arial', sans-serif; /* تغيير الخط */
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
     color: #fff;
-    height: 100vh;
-    width: 100vw;
+    height: 100vh; /* استخدام ارتفاع الشاشة الكامل */
+    background: url('https://img.freepik.com/free-vector/math-chalkboard-background_23-2148152440.jpg') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* محاذاة المحتوى إلى المنتصف */
-    background-color: #1e1e1e; /* لون الخلفية الجديد */
-    overflow: hidden;
+    flex-direction: column; /* تغيير اتجاه الفليكس إلى عمودي */
 }
 
-/* طبقة داكنة فوق الخلفية */
+/* طبقة شفافة */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(30, 30, 30, 0.8); /* لون داكن مع شفافية */
+    background: rgba(0, 0, 0, 0.7);
     z-index: -1;
 }
-
-/* خلفية الصورة */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://almerja.com/medea/aklam/R/v16982236519662059959.jpg') no-repeat center center fixed; /* خلفية جديدة */
-    background-size: cover;
-    z-index: -1;
-}
-
-        body, html {
-    overflow-x: hidden;
-}
-
 
 /* شريط التنقل */
 .navbar {
@@ -290,46 +268,48 @@ body::before {
 
 /* التصميم المتجاوب */
 @media (max-width: 600px) {
+    body {
+        padding: 10px; /* إضافة حشوة للصفحة */
+    }
+
+    .navbar {
+        padding: 15px 20px; /* تقليل الحشوة في شريط التنقل */
+    }
+
+    .page-title {
+        font-size: 28px; /* تقليل حجم العنوان */
+        margin: 80px 0 5px 0; /* تقليل الهوامش */
+    }
+
+    .subtitle {
+        font-size: 16px; /* تقليل حجم العنوان الفرعي */
+    }
+
+    .contact-icons {
+        flex-direction: row; /* عرض الأيقونات بشكل أفقي */
+        justify-content: center; /* توسيط الأيقونات */
+        gap: 20px; /* تقليل المسافة بين الأيقونات */
+        margin-bottom: 20px; /* تقليل المسافة السفلية */
+    }
+
+    .contact-icon a {
+        font-size: 28px; /* تقليل حجم الأيقونات */
+    }
+
+    .contact-form {
+        width: 90%; /* جعل النموذج أكثر عرضاً */
+    }
+
     .form-group {
-        flex-direction: column; /* تغيير اتجاه العناصر في الحقل */
-        margin-bottom: 15px; /* تقليل المسافة بين الحقول */
+        flex-direction: column; /* تغيير اتجاه الحقول إلى عمودي */
     }
 
     .form-group input,
     .form-group textarea {
-        width: 100%; /* توسيع الحقول لتملأ العرض بالكامل */
+        width: 100%; /* جعل الحقول تغطي العرض الكامل */
         margin-bottom: 10px; /* إضافة مساحة بين الحقول */
     }
-
-    .contact-form {
-        padding: 15px; /* تقليل padding للنموذج */
-    }
-
-    .submit-btn {
-        font-size: 16px; /* تقليل حجم الخط في زر الإرسال */
-        padding: 10px; /* تقليل padding في زر الإرسال */
-    }
-    /* إعداد الصفحة */
-body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
 }
-
-/* محتوى الصفحة */
-.main-content {
-    flex: 1; /* يأخذ المساحة المتبقية */
-    padding: 20px;
-    background-color: #ff6347; /* لون الخلفية للمحتوى */
-}
-
-/* نموذج الإرسال */
-.form-container {
-    margin-bottom: 20px; /* توفير مساحة تحت النموذج */
-}
-}
-
 
 /* الفوتر */
 .footer {
@@ -348,14 +328,6 @@ body, html {
     font-size: 18px;
     line-height: 1.5;
 }
-
-        @media (max-width: 480px) {
-    .footer p {
-        font-size: 14px;
-        line-height: 1.3;
-    }
-}
-
 
 /* تحسين العرض على الشاشات الصغيرة */
 @media (max-width: 768px) {
@@ -394,76 +366,6 @@ body, html {
     }
 }
 
-
-/* تحسين العرض على الشاشات الصغيرة */
-@media (max-width: 600px) {
-
-    .page-title {
-        font-size: 28px; /* تقليل حجم العنوان الرئيسي */
-        margin: 80px 0 10px; /* تقليل المسافة العلوية */
-    }
-
-    .subtitle {
-        font-size: 16px; /* تقليل حجم النص الفرعي */
-        margin-bottom: 20px; /* زيادة المسافة السفلية */
-    }
-
-    .contact-icons {
-        flex-direction: row; /* عرض الأيقونات بشكل أفقي */
-        justify-content: center; /* توسيط الأيقونات */
-        gap: 20px; /* تقليل المسافة بين الأيقونات */
-        margin-bottom: 20px; /* تقليل المسافة السفلية */
-    }
-
-    .contact-icons a {
-        font-size: 28px; /* تقليل حجم الأيقونات */
-    }
-
-    .contact-number {
-        font-size: 14px; /* تقليل حجم النص تحت الأيقونات */
-    }
-
-    .contact-form {
-        width: 100%; /* جعل النموذج بعرض كامل */
-        padding: 15px; /* تقليل padding للنموذج */
-        margin: 0 auto; /* توسيط النموذج */
-        border-radius: 10px; /* زوايا مستديرة للنموذج */
-    }
-
-    .form-group {
-        flex-direction: column; /* تغيير اتجاه العناصر في الحقل */
-        margin-bottom: 15px; /* تقليل المسافة بين الحقول */
-    }
-
-    .form-group input,
-    .form-group textarea {
-        width: 100%; /* توسيع الحقول لتملأ العرض بالكامل */
-        margin-bottom: 10px; /* إضافة مساحة بين الحقول */
-        font-size: 16px; /* تقليل حجم الخط في الحقول */
-        padding: 10px; /* تحسين padding للحقل */
-    }
-
-    .submit-btn {
-        font-size: 16px; /* تقليل حجم الخط في زر الإرسال */
-        padding: 12px; /* زيادة padding في زر الإرسال */
-    }
-
-    .footer {
-        padding: 15px; /* تقليل padding في الفوتر */
-        font-size: 14px; /* تقليل حجم الخط في الفوتر */
-    }
-
-    /* تحسين الصور أو الخلفيات */
-    img {
-        max-width: 100%; /* جعل الصور تأخذ عرض 100% */
-        height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
-    }
-
-    /* إخفاء الأيقونات الكبيرة */
-    .contact-icons a {
-        font-size: 24px; /* تقليل حجم الأيقونات */
-    }
-}
     </style>
     <!-- روابط لأيقونات التواصل الاجتماعي -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
