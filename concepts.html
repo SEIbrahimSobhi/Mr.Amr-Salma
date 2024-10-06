@@ -151,7 +151,8 @@ body::before {
     }
 }
 
-/* عنوان الصفحة */
+
+        /* عنوان الصفحة */
 .page-title {
     text-align: center;
     font-size: 48px; /* زيادة حجم الخط لجعل العنوان أكثر وضوحاً */
@@ -161,56 +162,57 @@ body::before {
     font-weight: bold; /* جعل الخط سميكاً لمزيد من الوضوح */
 }
 
-/* الأقسام */
-.section {
-    padding: 30px 20px;
-    text-align: center;
-    margin: 20px auto;
-    width: 90%;
-    flex: 1; /* السماح للقسم بالامتداد لملء المساحة المتبقية */
-}
-
-.section-title {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #ff6347;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    margin-top: 0px; /* إضافة هذه السطر لتحريك النص إلى الأسفل */
-}
-
-/* تصميم المستطيلات */
-.rectangles-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    direction: rtl;
-    padding: 20px;
-    gap: 20px;
-}
-
-.rectangle {
-    width: 160px;
-    height: 80px;
-    margin: 10px;
-    background: linear-gradient(135deg, #ff6347, #ffa07a);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-}
-
-.rectangle:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
-}
-
+        
+        /* الأقسام */
+        .section {
+            padding: 30px 20px;
+            text-align: center;
+            margin: 20px auto;
+            width: 90%;
+        }
+        
+        .section-title {
+            font-size: 28px; /* حجم الخط المعدل */
+            margin-bottom: 20px;
+            color: #ff6347;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* تصميم الوحدات */
+        .rectangles-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            direction: rtl;
+            padding: 20px;
+            gap: 20px; /* زيادة التباعد لتأكيد فخامة الوحدات */
+        }
+        
+        .rectangle {
+            width: 160px; /* زيادة الحجم */
+            height: 80px;
+            margin: 10px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.5)); /* تأثير متدرج أنيق */
+            border-radius: 16px; /* حواف أكثر انحناءً لمظهر فخم */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px; /* تكبير النص ليكون أكثر وضوحاً */
+            color: #ff6347; /* لون ذهبي فاخر */
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease; /* جعل التحولات أكثر سلاسة */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.9), inset 0 2px 4px rgba(255, 255, 255, 0.1); /* ظلال عميقة للمزيد من الفخامة */
+            border: 2px solid rgba(241, 196, 15, 0.7); /* إضافة حدود ذهبية خفيفة */
+        }
+        
+        .rectangle:hover {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.6)); /* تأثير إضاءة عند التفاعل */
+            transform: scale(1.1); /* تكبير أكثر لجذب الانتباه */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 1), inset 0 2px 6px rgba(255, 255, 255, 0.2); /* ظلال أكثر عمقاً عند التحريك */
+            border: 2px solid rgba(241, 196, 15, 1); /* تقوية تأثير الحدود الذهبية عند التحريك */
+        }
         
         /* تحسين استجابة الوحدات */
         @media (max-width: 768px) {
@@ -323,7 +325,7 @@ body::before {
 }
 
 .telegram img {
-    content: url('https://img.icons8.com/ios-filled/50/ffffff/youtube.png');
+    content: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Telegram_2019_simple_logo.svg');
 }
 
 /* الفوتر */
