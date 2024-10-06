@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <style>
+/* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* إعدادات الجسم */
+body {
+    font-family: 'Arial', sans-serif; /* تغيير الخط */
+    color: #fff;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* محاذاة المحتوى إلى المنتصف */
+    background-color: #1e1e1e; /* لون الخلفية الجديد */
+    overflow: hidden;
+}
+
+/* طبقة داكنة فوق الخلفية */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.8); /* لون داكن مع شفافية */
+    z-index: 0;
+}
+
+/* خلفية الصورة */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://almerja.com/medea/aklam/R/v16982236519662059959.jpg') no-repeat center center fixed; /* خلفية جديدة */
+    background-size: cover;
+    z-index: -1;
+}
+
+/* شريط التنقل */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(50, 50, 50, 0.9); /* لون خلفية جديد */
+    padding: 20px 40px; /* تغيير الحشوة */
+    display: flex;
+    justify-content: center; /* محاذاة إلى الوسط */
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 32px; /* حجم خط أكبر */
+    font-weight: bold;
+    color: #ff6347; /* لون جديد */
+    text-transform: none; /* إزالة التحويل إلى أحرف كبيرة */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #ff6347, 0 0 20px #ff6347; /* تأثير ظل مختلف */
+}
+
+/* زر القائمة (همبرغر) */
+.menu-toggle {
+    display: none; /* إخفاء الزر على الشاشات الكبيرة */
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(50, 50, 50, 0.8);
+    border-radius: 8px; /* زوايا أكثر نعومة */
+    transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background-color: rgba(50, 50, 50, 1);
+}
+
+.menu-toggle .bar {
+    width: 35px;
+    height: 4px;
+    background: #fff;
+    margin: 4px 0;
+}
+
+/* قائمة التنقل */
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.navbar-links li {
+    margin: 0 20px; /* تعديل المسافات */
+}
+
+.navbar-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 15px; /* إضافة حشوة حول النص */
+    transition: background-color 0.3s ease, color 0.3s ease; /* إضافة تأثير على الخلفية */
+}
+
+.navbar-links a:hover {
+    background-color: #ff6347; /* لون جديد عند التحويم */
+    color: #1e1e1e; /* تغيير اللون عند التحويم */
+    border-radius: 5px; /* إضافة زوايا مستديرة */
+}
+
+/* القائمة عند الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none; /* إخفاء القائمة بشكل افتراضي */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(50, 50, 50, 0.9);
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .menu-toggle {
+        display: flex; /* عرض زر القائمة */
+    }
+
+    .navbar-links.active {
+        display: flex; /* عرض القائمة عند تفعيلها */
+    }
+}
+
+/* قسم الترحيب */
+.welcome-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    flex-grow: 1; /* لجعل المحتوى يمتد مع الصفحة */
+}
+
+/* تكبير نص الترحيب */
+.greeting-text {
+    font-size: 60px; /* حجم نص مختلف */
+    margin-bottom: 20px;
+}
+
+/* تأثير الكتابة */
+.typing-text {
+    font-size: 26px;
+    color: #ff6347; /* لون جديد */
+}
+
+.typing-cursor {
+    font-weight: bold; /* جعل المؤشر أكثر وضوحاً */
+    font-size: 26px;
+    opacity: 1;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* تحسين زر CTA */
+.cta-button {
+    background: #ff6347; /* لون جديد */
+    color: #fff;
+    padding: 15px 30px; /* تغيير الحشوة */
+    border: none;
+    border-radius: 10px; /* زوايا أكثر نعومة */
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    margin: 15px; /* تعديل المسافة */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.cta-button:hover {
+    background: #e55300; /* لون جديد عند التحويم */
+    transform: scale(1.05);
+}
+
+/* الفوتر */
+.footer {
+    text-align: center;
+    padding: 25px; /* تعديل الحشوة */
+    font-size: 16px;
+    background: rgba(50, 50, 50, 0.9);
+    border-top: 4px solid #ff6347; /* لون جديد */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.footer p {
+    margin: 0;
+    color: #ff6347; /* لون جديد */
+    font-size: 20px; /* زيادة حجم النص */
+    line-height: 1.5;
+}
+
+/* تحسينات عامة للشاشات الصغيرة */
+@media (max-width: 480px) {
+    .greeting-text {
+        font-size: 50px; /* تقليل حجم النص */
+    }
+
+    .typing-text {
+        font-size: 22px; /* تقليل حجم النص */
+    }
+
+    .cta-button {
+        font-size: 20px; /* تقليل حجم الزر */
+        padding: 10px 25px; /* تعديل الحشوة */
+    }
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-brand">Mr.Amr</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar-links" id="navbar-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="concepts.html">المفاهيم</a></li>
+            <li><a href="exams.html">الاختبارات</a></li>
+            <li><a href="help.html">المساعدة</a></li>
+        </ul>
+    </nav>
+
+    <!-- قسم الترحيب -->
+    <div class="welcome-section">
+        <h1 class="greeting-text">مرحبا بكم في موقعنا!</h1>
+        <div class="typing-text">
+            <span class="typing"></span><span class="typing-cursor">|</span>
+        </div>
+        <a href="concepts.html" class="cta-button">ابدأ الآن</a>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <p>أنت و السيطرة تحت الفيزياء</p>
+    </footer>
+
+    <script>
+    // تأثير الكتابة
+var typed = new Typed(".typing", {
+    strings: [
+        "Don't fear Amr is here",
+        "المكهرب واحد بس",
+        "أنت و السيطرة تحت الفيزياء!"
+    ],
+    typeSpeed: 50,
+    backSpeed: 25,
+    loop: true
+});
+
+
+        // فتح وغلق القائمة في الشاشات الصغيرة
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            this.classList.toggle('open');
+            document.getElementById('navbar-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

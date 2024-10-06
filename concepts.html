@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المفاهيم</title>
+    <style>
+/* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* إعدادات الجسم */
+body {
+    font-family: 'Arial', sans-serif; /* تغيير الخط */
+    color: #fff;
+    min-height: 100vh; /* استخدام min-height بدلاً من height */
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e; /* لون الخلفية الجديد */
+    overflow: hidden;
+    overflow: auto; /* أو scroll إذا كنت تريد أن تكون هناك شريط تمرير دائماً */
+}
+
+/* طبقة داكنة فوق الخلفية */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.8); /* لون داكن مع شفافية */
+    z-index: -1;
+}
+
+/* خلفية الصورة */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://almerja.com/medea/aklam/R/v16982236519662059959.jpg') no-repeat center center fixed; /* خلفية جديدة */
+    background-size: cover;
+    z-index: -1;
+}
+
+/* شريط التنقل */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(50, 50, 50, 0.9); /* لون خلفية جديد */
+    padding: 20px 40px; /* تغيير الحشوة */
+    display: flex;
+    justify-content: center; /* محاذاة إلى الوسط */
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 32px; /* حجم خط أكبر */
+    font-weight: bold;
+    color: #ff6347; /* لون جديد */
+    text-transform: none; /* إزالة التحويل إلى أحرف كبيرة */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #ff6347, 0 0 20px #ff6347; /* تأثير ظل مختلف */
+}
+
+/* زر القائمة (همبرغر) */
+.menu-toggle {
+    display: none; /* إخفاء الزر على الشاشات الكبيرة */
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(50, 50, 50, 0.8);
+    border-radius: 8px; /* زوايا أكثر نعومة */
+    transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background-color: rgba(50, 50, 50, 1);
+}
+
+.menu-toggle .bar {
+    width: 35px;
+    height: 4px;
+    background: #fff;
+    margin: 4px 0;
+}
+
+/* قائمة التنقل */
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.navbar-links li {
+    margin: 0 20px; /* تعديل المسافات */
+}
+
+.navbar-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 15px; /* إضافة حشوة حول النص */
+    transition: background-color 0.3s ease, color 0.3s ease; /* إضافة تأثير على الخلفية */
+}
+
+.navbar-links a:hover {
+    background-color: #ff6347; /* لون جديد عند التحويم */
+    color: #1e1e1e; /* تغيير اللون عند التحويم */
+    border-radius: 5px; /* إضافة زوايا مستديرة */
+}
+
+/* القائمة عند الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none; /* إخفاء القائمة بشكل افتراضي */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(50, 50, 50, 0.9);
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .menu-toggle {
+        display: flex; /* عرض زر القائمة */
+    }
+
+    .navbar-links.active {
+        display: flex; /* عرض القائمة عند تفعيلها */
+    }
+}
+
+/* عنوان الصفحة */
+.page-title {
+    text-align: center;
+    font-size: 48px; /* زيادة حجم الخط لجعل العنوان أكثر وضوحاً */
+    color: #ff6347; /* الحفاظ على اللون الذهبي الفاتح */
+    margin: 100px 0 20px 0; /* زيادة المسافة العلوية أكثر لتحريك العنوان للأسفل */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* زيادة عمق الظل لجعل العنوان بارزاً أكثر */
+    font-weight: bold; /* جعل الخط سميكاً لمزيد من الوضوح */
+}
+
+/* الأقسام */
+.section {
+    padding: 30px 20px;
+    text-align: center;
+    margin: 20px auto;
+    width: 90%;
+    flex: 1; /* السماح للقسم بالامتداد لملء المساحة المتبقية */
+}
+
+.section-title {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #ff6347;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-top: 0px; /* إضافة هذه السطر لتحريك النص إلى الأسفل */
+}
+
+/* تصميم المستطيلات */
+.rectangles-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    direction: rtl;
+    padding: 20px;
+    gap: 20px;
+}
+
+.rectangle {
+    width: 180px;
+    height: 100px;
+    margin: 10px;
+    background: linear-gradient(135deg, #ff6347, #ffa07a);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.rectangle:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
+}
+
+/* استجابة المستطيلات */
+@media (max-width: 768px) {
+    .rectangle {
+        width: 140px;
+        height: 80px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rectangle {
+        width: 120px;
+        height: 70px;
+        font-size: 16px;
+    }
+}
+
+
+/* تحسين شامل لأيقونات واتساب ويوتيوب لتبدو أكثر فخامة مع تحسينات على الشاشات الصغيرة */
+.social-icons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+}
+
+.social-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(255, 255, 255, 0.2) inset;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    cursor: pointer;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.social-icon:hover::before {
+    opacity: 1;
+}
+
+.social-icon img {
+    width: 60%;
+    height: 60%;
+    transition: transform 0.4s ease;
+}
+
+.social-icon:hover img {
+    transform: scale(1.2);
+}
+
+.social-icon:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 6px 12px rgba(0, 0, 0, 0.15) inset;
+    background: linear-gradient(145deg, #f7f7f7, #cccccc);
+}
+
+/* تخصيص لكل أيقونة */
+.whatsapp {
+    background: linear-gradient(145deg, #25d366, #128c7e);
+    box-shadow: 0 10px 20px rgba(0, 128, 0, 0.25);
+    border: 2px solid #25d366;
+}
+
+.whatsapp img {
+    content: url('https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png');
+}
+
+.youtube {
+    background: linear-gradient(145deg, #ff0000, #c90000);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.25);
+    border: 2px solid #ff0000;
+}
+
+.youtube img {
+    content: url('https://img.icons8.com/ios-filled/50/ffffff/youtube.png');
+}
+
+/* الفوتر */
+.footer {
+    text-align: center;
+    padding: 25px; /* تعديل الحشوة */
+    font-size: 16px;
+    background: rgba(50, 50, 50, 0.9);
+    border-top: 4px solid #ff6347; /* لون جديد */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    position: relative; /* اجعل الفوتر نسبيًا */
+    margin-top: auto; /* دفع الفوتر للأسفل */
+}
+
+.footer p {
+    margin: 0;
+    color: #ff6347; /* لون جديد */
+    font-size: 20px; /* زيادة حجم النص */
+    line-height: 1.5;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-brand">Mr.Amr</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar-links" id="navbar-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="concepts.html">المفاهيم</a></li>
+            <li><a href="exams.html">الاختبارات</a></li>
+            <li><a href="help.html">المساعدة</a></li>
+        </ul>
+    </nav>
+
+    <!-- عنوان الصفحة -->
+    <div class="page-title">المفاهيم</div>
+
+    <!-- قسم المستطيلات -->
+    <div class="section" id="statics-section">
+        <h2 class="section-title">فيزياء</h2>
+        <div class="rectangles-container">
+            <div class="rectangle" onclick="openBook('https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2024/%D9%85%D9%84%D8%AE%D8%B5%D8%A7%D8%AA%20%D9%88%20%D9%85%D9%81%D8%A7%D9%87%D9%8A%D9%85%20%D9%88%20%D8%A3%D8%B3%D8%A6%D9%84%D8%A9%20%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D9%8A%20%D8%A7%D9%84%D8%A3%D9%88%D9%84/%D8%AB%D8%A7%D9%86%D9%88%D9%89/%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%88%D9%89/3%D8%AB%20%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%A7%D9%88%D9%84/index.html')">الفصل 1</div>
+            <div class="rectangle" onclick="openBook('https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2024/%D9%85%D9%84%D8%AE%D8%B5%D8%A7%D8%AA%20%D9%88%20%D9%85%D9%81%D8%A7%D9%87%D9%8A%D9%85%20%D9%88%20%D8%A3%D8%B3%D8%A6%D9%84%D8%A9%20%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D9%8A%20%D8%A7%D9%84%D8%A3%D9%88%D9%84/%D8%AB%D8%A7%D9%86%D9%88%D9%89/%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%88%D9%89/3%D8%AB%20%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A/index.html')">الفصل 2</div>
+            <div class="rectangle" onclick="openBook('https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2024/%D9%85%D9%84%D8%AE%D8%B5%D8%A7%D8%AA%20%D9%88%20%D9%85%D9%81%D8%A7%D9%87%D9%8A%D9%85%20%D9%88%20%D8%A3%D8%B3%D8%A6%D9%84%D8%A9%20%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D9%8A%20%D8%A7%D9%84%D8%A3%D9%88%D9%84/%D8%AB%D8%A7%D9%86%D9%88%D9%89/%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%88%D9%89/3%D8%AB%20%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB/index.html')">الفصل 3</div>
+            <div class="rectangle" onclick="openBook('https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2024/%D9%85%D9%84%D8%AE%D8%B5%D8%A7%D8%AA%20%D9%88%20%D9%85%D9%81%D8%A7%D9%87%D9%8A%D9%85%20%D9%88%20%D8%A3%D8%B3%D8%A6%D9%84%D8%A9%20%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D9%8A%20%D8%A7%D9%84%D8%A3%D9%88%D9%84/%D8%AB%D8%A7%D9%86%D9%88%D9%89/%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%88%D9%89/3%D8%AB%20%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%B1%D8%A7%D8%A8%D8%B9/index.html')">الفصل 4</div>
+            <div class="rectangle" onclick="openBook('https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2024/%D9%85%D9%84%D8%AE%D8%B5%D8%A7%D8%AA%20%D9%88%20%D9%85%D9%81%D8%A7%D9%87%D9%8A%D9%85%20%D9%88%20%D8%A3%D8%B3%D8%A6%D9%84%D8%A9%20%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D9%8A%20%D8%A7%D9%84%D8%A3%D9%88%D9%84/%D8%AB%D8%A7%D9%86%D9%88%D9%89/%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%88%D9%89/3%D8%AB%20%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AE%D8%A7%D9%85%D8%B3/index.html')">الفصل 5</div>
+            <div class="rectangle" onclick="openBook('https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2024/%D9%85%D9%84%D8%AE%D8%B5%D8%A7%D8%AA%20%D9%88%20%D9%85%D9%81%D8%A7%D9%87%D9%8A%D9%85%20%D9%88%20%D8%A3%D8%B3%D8%A6%D9%84%D8%A9%20%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D9%8A%20%D8%A7%D9%84%D8%A3%D9%88%D9%84/%D8%AB%D8%A7%D9%86%D9%88%D9%89/%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%88%D9%89/3%D8%AB%20%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%B3%D8%A7%D8%AF%D8%B3/index.html')">الفصل 6</div>
+            <div class="rectangle" onclick="openBook('https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2024/%D9%85%D9%84%D8%AE%D8%B5%D8%A7%D8%AA%20%D9%88%20%D9%85%D9%81%D8%A7%D9%87%D9%8A%D9%85%20%D9%88%20%D8%A3%D8%B3%D8%A6%D9%84%D8%A9%20%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D9%8A%20%D8%A7%D9%84%D8%A3%D9%88%D9%84/%D8%AB%D8%A7%D9%86%D9%88%D9%89/%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%88%D9%89/3%D8%AB%20%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%B3%D8%A7%D8%A8%D8%B9/index.html')">الفصل 7</div>
+            <div class="rectangle" onclick="openBook('https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2024/%D9%85%D9%84%D8%AE%D8%B5%D8%A7%D8%AA%20%D9%88%20%D9%85%D9%81%D8%A7%D9%87%D9%8A%D9%85%20%D9%88%20%D8%A3%D8%B3%D8%A6%D9%84%D8%A9%20%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D9%8A%20%D8%A7%D9%84%D8%A3%D9%88%D9%84/%D8%AB%D8%A7%D9%86%D9%88%D9%89/%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%88%D9%89/3%D8%AB%20%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1%20%D8%A7%D9%84%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%AB%D8%A7%D9%85%D9%86/index.html')">الفصل 8</div>
+        </div>
+    </div>
+
+
+<!-- أيقونات التواصل الاجتماعي الفاخرة والمحسنة -->
+<div class="social-icons">
+    <a href="https://wa.me/201029018336" target="_blank" class="social-icon whatsapp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    <a href="https://t.me/+0KM8uYe2EuY0MjQ0" target="_blank" class="social-icon telegram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Telegram_2019_simple_logo.svg" alt="Telegram_2019_simple_logo">
+    </a>
+</div>
+    
+    <!-- الفوتر -->
+    <footer class="footer">
+        <p>أنت و السيطرة تحت الفيزياء</p>
+    </footer>
+
+    <script>
+
+        // وظائف فتح الكتاب
+        function openBook(url) {
+            window.open(url, '_self'); // فتح الرابط داخل نفس النافذة
+        }
+
+        // قائمة التنقل
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbarLinks = document.getElementById('navbar-links');
+
+        menuToggle.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
