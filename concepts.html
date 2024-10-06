@@ -171,7 +171,7 @@ body::before {
 }
 
 .section-title {
-    font-size: 40px;
+    font-size: 28px;
     margin-bottom: 20px;
     color: #ff6347;
     font-weight: bold;
@@ -190,8 +190,8 @@ body::before {
 }
 
 .rectangle {
-    width: 180px;
-    height: 100px;
+    width: 160px;
+    height: 80px;
     margin: 10px;
     background: linear-gradient(135deg, #ff6347, #ffa07a);
     border-radius: 20px;
@@ -211,22 +211,35 @@ body::before {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
 }
 
-/* استجابة المستطيلات */
-@media (max-width: 768px) {
-    .rectangle {
-        width: 140px;
-        height: 80px;
-        font-size: 18px;
-    }
-}
+        
+        /* تحسين استجابة الوحدات */
+        @media (max-width: 768px) {
+            .rectangle {
+                width: 120px;
+                height: 60px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .rectangle {
+                width: 100px;
+                height: 50px;
+                font-size: 14px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .rectangle {
-        width: 120px;
-        height: 70px;
-        font-size: 16px;
-    }
-}
+        
+        /* تحسين العرض على الشاشات الصغيرة */
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 28px; /* حجم الخط المعدل على الشاشات الصغيرة */
+            }
+        
+            .section-title {
+                font-size: 24px; /* حجم الخط المعدل */
+            }
+        }
 
 
 /* تحسين شامل لأيقونات واتساب ويوتيوب لتبدو أكثر فخامة مع تحسينات على الشاشات الصغيرة */
@@ -303,13 +316,13 @@ body::before {
     content: url('https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png');
 }
 
-.youtube {
+.telegram {
     background: linear-gradient(145deg, #ff0000, #c90000);
     box-shadow: 0 10px 20px rgba(255, 0, 0, 0.25);
     border: 2px solid #ff0000;
 }
 
-.youtube img {
+.telegram img {
     content: url('https://img.icons8.com/ios-filled/50/ffffff/youtube.png');
 }
 
