@@ -219,7 +219,7 @@ body::before {
     background: rgba(50, 50, 50, 0.9);
     border-top: 4px solid #ff6347; /* لون جديد */
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
-    position: relative;
+    position: fixed;
     z-index: 10;
     width: 100%;
 }
@@ -230,6 +230,18 @@ body::before {
     font-size: 20px; /* زيادة حجم النص */
     line-height: 1.5;
 }
+
+    @media (max-width: 600px) {
+    .footer {
+        font-size: 14px;
+        padding: 15px;
+    }
+    
+    .footer p {
+        font-size: 16px;
+    }
+}
+
 
 /* تحسينات عامة للشاشات الصغيرة */
 @media (max-width: 480px) {
