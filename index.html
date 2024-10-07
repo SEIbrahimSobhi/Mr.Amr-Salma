@@ -13,43 +13,63 @@
         }
         
         /* إعدادات الجسم */
-   body {
-    font-family: Arial, sans-serif;
+   /* إعدادات الجسم */
+body {
+    font-family: 'Arial', sans-serif; /* تغيير الخط */
     color: #fff;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: url('https://almerja.com/medea/aklam/R/v16982236519662059959.jpg') no-repeat center center fixed;
-    background-size: cover;
-    overflow-y: auto;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* محاذاة المحتوى إلى المنتصف */
+    background-color: #1e1e1e; /* لون الخلفية */
+    overflow: hidden;
+    min-height: 100vh; /* جعل الارتفاع 100% من ارتفاع العرض المرئي */
+    margin: 0; /* إلغاء أي هوامش افتراضية */
+    padding: 0; /* إلغاء أي حواف داخلية */
 }
 
 /* طبقة داكنة فوق الخلفية */
 .overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
+    background: rgba(30, 30, 30, 0.8); /* لون داكن مع شفافية */
+    z-index: 0;
+}
+
+/* خلفية الصورة */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://almerja.com/medea/aklam/R/v16982236519662059959.jpg') no-repeat center center fixed; /* خلفية جديدة */
+    background-size: cover;
+    z-index: -1;
 }
 
 /* استعلامات الوسائط للشاشات الصغيرة */
 @media only screen and (max-width: 768px) {
     body {
-        background-size: contain; /* لجعل الخلفية تتناسب بشكل أفضل مع الشاشات الصغيرة */
+        background-size: contain; /* لجعل الخلفية تتناسب مع الشاشات الصغيرة */
     }
 
-    .overlay {
-        background: rgba(0, 0, 0, 0.8); /* زيادة التعتيم قليلاً للشاشات الصغيرة */
+    body::before {
+        background-size: contain; /* تعديل حجم خلفية الصورة لتتناسب مع الشاشات الصغيرة */
     }
 
-    /* تعديل حجم النص والعناصر الأخرى لتتناسب مع الشاشات الصغيرة */
     h1, h2, h3, p {
         font-size: 90%; /* تقليل حجم الخط */
     }
+    
+    .overlay {
+        background: rgba(30, 30, 30, 0.9); /* زيادة التعتيم على الشاشات الصغيرة */
+    }
+}
+
         
         /* شريط التنقل */
         .navbar {
