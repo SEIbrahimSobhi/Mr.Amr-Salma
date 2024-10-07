@@ -51,26 +51,6 @@ body::before {
     z-index: -1;
 }
 
-/* استعلامات الوسائط للشاشات الصغيرة */
-@media only screen and (max-width: 768px) {
-    body {
-        background-size: contain; /* لجعل الخلفية تتناسب مع الشاشات الصغيرة */
-    }
-
-    body::before {
-        background-size: contain; /* تعديل حجم خلفية الصورة لتتناسب مع الشاشات الصغيرة */
-    }
-
-    h1, h2, h3, p {
-        font-size: 90%; /* تقليل حجم الخط */
-    }
-    
-    .overlay {
-        background: rgba(30, 30, 30, 0.9); /* زيادة التعتيم على الشاشات الصغيرة */
-    }
-}
-
-        
         /* شريط التنقل */
         .navbar {
             position: fixed;
