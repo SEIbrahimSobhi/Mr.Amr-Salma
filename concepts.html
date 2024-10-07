@@ -17,7 +17,7 @@
             font-family: Arial, sans-serif;
             color: #fff;
             height: 100%;
-            background: url('https://vid.alarabiya.net/images/2020/08/29/5e3c3989-4d61-42b9-bd10-1f3ad993bdef/5e3c3989-4d61-42b9-bd10-1f3ad993bdef_16x9_1200x676.jpg?width=372&format=jpg') no-repeat center center fixed;
+            background: url('images.jpeg') no-repeat center center fixed;
             background-size: cover;
             overflow-y: auto;
         }
@@ -33,185 +33,228 @@
             z-index: -1;
         }
         
-/* شريط التنقل */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(50, 50, 50, 0.9); /* لون خلفية جديد */
-    padding: 20px 40px; /* تغيير الحشوة */
-    display: flex;
-    justify-content: center; /* محاذاة إلى الوسط */
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
+        /* شريط التنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-size: 32px;
+            font-weight: bold;
+            color: #8fe3ff;
+            text-transform: capitalize;
+            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+        }
+        
+        .navbar-brand:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #8fe3ff, 0 0 20px #8fe3ff;
+            transform: scale(1.1);
+        }
+        
+        /* زر القائمة (همبرغر) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            background-color: rgba(0, 0, 0, 1);
+        }
+        
+        .menu-toggle .bar {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        /* قائمة التنقل */
+        .navbar-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-links li {
+            margin: 0 15px;
+        }
+        
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-links a:hover {
+            color: #8fe3ff;
+        }
+        
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: #8fe3ff;
+            transition: width 0.3s ease;
+        }
+        
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* القائمة عند الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 20px;
+                border-radius: 5px;
+            }
+        
+            .menu-toggle {
+                display: flex;
+            }
+        
+            .navbar-links.active {
+                display: flex;
+            }
+        }
 
-.navbar-brand {
-    font-size: 32px; /* حجم خط أكبر */
-    font-weight: bold;
-    color: #ff6347; /* لون جديد */
-    text-transform: none; /* إزالة التحويل إلى أحرف كبيرة */
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.navbar-brand:hover {
-    color: #fff;
-    text-shadow: 0 0 10px #ff6347, 0 0 20px #ff6347; /* تأثير ظل مختلف */
-}
-
-/* زر القائمة (همبرغر) */
-.menu-toggle {
-    display: none; /* إخفاء الزر على الشاشات الكبيرة */
-    flex-direction: column;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    background-color: rgba(50, 50, 50, 0.8);
-    border-radius: 8px; /* زوايا أكثر نعومة */
-    transition: background-color 0.3s ease;
-}
-
-.menu-toggle:hover {
-    background-color: rgba(50, 50, 50, 1);
-}
-
-.menu-toggle .bar {
-    width: 35px;
-    height: 4px;
-    background: #fff;
-    margin: 4px 0;
-}
-
-/* قائمة التنقل */
-.navbar-links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-.navbar-links li {
-    margin: 0 20px; /* تعديل المسافات */
-}
-
-.navbar-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 20px;
-    padding: 10px 15px; /* إضافة حشوة حول النص */
-    transition: background-color 0.3s ease, color 0.3s ease; /* إضافة تأثير على الخلفية */
-}
-
-.navbar-links a:hover {
-    background-color: #ff6347; /* لون جديد عند التحويم */
-    color: #1e1e1e; /* تغيير اللون عند التحويم */
-    border-radius: 5px; /* إضافة زوايا مستديرة */
-}
-
-/* القائمة عند الشاشات الصغيرة */
-@media (max-width: 768px) {
-    .navbar-links {
-        display: none; /* إخفاء القائمة بشكل افتراضي */
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: rgba(50, 50, 50, 0.9);
-        padding: 20px;
-        border-radius: 5px;
-    }
-
-    .menu-toggle {
-        display: flex; /* عرض زر القائمة */
-    }
-
-    .navbar-links.active {
-        display: flex; /* عرض القائمة عند تفعيلها */
-    }
-}
-
-/* عنوان الصفحة */
+        /* عنوان الصفحة */
 .page-title {
     text-align: center;
     font-size: 48px; /* زيادة حجم الخط لجعل العنوان أكثر وضوحاً */
-    color: #ff6347; /* الحفاظ على اللون الذهبي الفاتح */
+    color: #8fe3ff; /* الحفاظ على اللون الذهبي الفاتح */
     margin: 100px 0 20px 0; /* زيادة المسافة العلوية أكثر لتحريك العنوان للأسفل */
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* زيادة عمق الظل لجعل العنوان بارزاً أكثر */
     font-weight: bold; /* جعل الخط سميكاً لمزيد من الوضوح */
 }
 
-/* الأقسام */
-.section {
-    padding: 30px 20px;
-    text-align: center;
-    margin: 20px auto;
-    width: 90%;
-    flex: 1; /* السماح للقسم بالامتداد لملء المساحة المتبقية */
-}
+        
+        /* الأقسام */
+        .section {
+            padding: 30px 20px;
+            text-align: center;
+            margin: 20px auto;
+            width: 90%;
+        }
+        
+        .section-title {
+            font-size: 28px; /* حجم الخط المعدل */
+            margin-bottom: 20px;
+            color: #8fe3ff;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        /* تصميم الوحدات */
+        .rectangles-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            direction: rtl;
+        }
 
-.section-title {
-    font-size: 40px;
-    margin-bottom: 20px;
-    color: #ff6347;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    margin-top: 0px; /* إضافة هذه السطر لتحريك النص إلى الأسفل */
-}
+        .rectangle {
+            width: 120px;
+            height: 60px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
 
-/* تصميم المستطيلات */
-.rectangles-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    direction: rtl;
-    padding: 20px;
-    gap: 20px;
-}
+        .rectangle:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
 
-.rectangle {
-    width: 180px;
-    height: 100px;
-    margin: 10px;
-    background: linear-gradient(135deg, #ff6347, #ffa07a);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-}
-
-.rectangle:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
-}
-
-/* استجابة المستطيلات */
-@media (max-width: 768px) {
-    .rectangle {
-        width: 140px;
-        height: 80px;
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .rectangle {
-        width: 120px;
-        height: 70px;
-        font-size: 16px;
-    }
-}
+        /* تحسين استجابة الوحدات */
+        @media (max-width: 768px) {
+            .rectangle {
+                width: 120px;
+                height: 60px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .rectangle {
+                width: 100px;
+                height: 50px;
+                font-size: 14px;
+            }
+        }
+        
+        /* تحسين العرض على الشاشات الصغيرة */
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 28px; /* حجم الخط المعدل على الشاشات الصغيرة */
+            }
+        
+            .section-title {
+                font-size: 24px; /* حجم الخط المعدل */
+            }
+        
+            .navbar-brand {
+                font-size: 28px; /* حجم الخط المعدل */
+            }
+        
+            .navbar-links a {
+                font-size: 16px; /* حجم الخط المعدل */
+            }
+        }
 
 
 /* تحسين شامل لأيقونات واتساب ويوتيوب لتبدو أكثر فخامة مع تحسينات على الشاشات الصغيرة */
@@ -364,8 +407,8 @@
     <a href="https://wa.me/201029018336" target="_blank" class="social-icon whatsapp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
-    <a href="https://t.me/+0KM8uYe2EuY0MjQ0" target="_blank" class="social-icon telegram">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Telegram_2019_simple_logo.svg" alt="Telegram_2019_simple_logo">
+    <a href="https://youtube.com/@dramrsalama?si=NjtNQSAE_6QsqgkY" target="_blank" class="social-icon youtube">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
     </a>
 </div>
 
