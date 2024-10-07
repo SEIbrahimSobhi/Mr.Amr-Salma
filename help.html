@@ -49,56 +49,71 @@ body::before {
     background-size: cover;
     z-index: -1;
 }
+
 /* شريط التنقل */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(50, 50, 50, 0.9); /* لون خلفية جديد */
-    padding: 20px 40px; /* تغيير الحشوة */
+    background: rgba(0, 0, 0, 0.95);
+    padding: 15px 20px;
     display: flex;
-    justify-content: center; /* محاذاة إلى الوسط */
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
 
 .navbar-brand {
-    font-size: 32px; /* حجم خط أكبر */
+    font-size: 32px;
     font-weight: bold;
-    color: #ff6347; /* لون جديد */
-    text-transform: none; /* إزالة التحويل إلى أحرف كبيرة */
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    color: #8fe3ff;
+    text-transform: capitalize;
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .navbar-brand:hover {
     color: #fff;
-    text-shadow: 0 0 10px #ff6347, 0 0 20px #ff6347; /* تأثير ظل مختلف */
+    text-shadow: 0 0 10px #8fe3ff, 0 0 20px #8fe3ff;
+    transform: scale(1.1);
 }
 
 /* زر القائمة (همبرغر) */
 .menu-toggle {
-    display: none; /* إخفاء الزر على الشاشات الكبيرة */
+    display: none;
     flex-direction: column;
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    padding: 15px;
-    background-color: rgba(50, 50, 50, 0.8);
-    border-radius: 8px; /* زوايا أكثر نعومة */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .menu-toggle:hover {
-    background-color: rgba(50, 50, 50, 1);
+    background-color: rgba(0, 0, 0, 1);
 }
 
 .menu-toggle .bar {
-    width: 35px;
-    height: 4px;
+    width: 30px;
+    height: 3px;
     background: #fff;
     margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* قائمة التنقل */
@@ -112,43 +127,57 @@ body::before {
 }
 
 .navbar-links li {
-    margin: 0 20px; /* تعديل المسافات */
+    margin: 0 15px;
 }
 
 .navbar-links a {
     color: #fff;
     text-decoration: none;
-    font-size: 20px;
-    padding: 10px 15px; /* إضافة حشوة حول النص */
-    transition: background-color 0.3s ease, color 0.3s ease; /* إضافة تأثير على الخلفية */
+    font-size: 18px;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
 }
 
 .navbar-links a:hover {
-    background-color: #ff6347; /* لون جديد عند التحويم */
-    color: #1e1e1e; /* تغيير اللون عند التحويم */
-    border-radius: 5px; /* إضافة زوايا مستديرة */
+    color: #8fe3ff;
+}
+
+.navbar-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: #8fe3ff;
+    transition: width 0.3s ease;
+}
+
+.navbar-links a:hover::after {
+    width: 100%;
 }
 
 /* القائمة عند الشاشات الصغيرة */
 @media (max-width: 768px) {
     .navbar-links {
-        display: none; /* إخفاء القائمة بشكل افتراضي */
+        display: none;
         flex-direction: column;
         position: absolute;
         top: 60px;
         left: 0;
         width: 100%;
-        background: rgba(50, 50, 50, 0.9);
+        background: rgba(0, 0, 0, 0.9);
         padding: 20px;
         border-radius: 5px;
     }
 
     .menu-toggle {
-        display: flex; /* عرض زر القائمة */
+        display: flex;
     }
 
     .navbar-links.active {
-        display: flex; /* عرض القائمة عند تفعيلها */
+        display: flex;
     }
 }
 
@@ -156,7 +185,7 @@ body::before {
 .page-title {
     text-align: center;
     font-size: 36px;
-    color: #ff6347;
+    color: #8fe3ff;
     margin: 120px 0 10px 0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
@@ -183,7 +212,7 @@ body::before {
 }
 
 .contact-icons a {
-    color: #ff6347;
+    color: #8fe3ff;
     font-size: 32px; /* حجم أكبر للأيقونات */
     text-decoration: none;
     transition: transform 0.3s ease, color 0.3s;
@@ -191,7 +220,7 @@ body::before {
 
 .contact-icons a:hover {
     transform: scale(1.2);
-    color: #ff6347;
+    color: #8fe3ff;
 }
 
 .contact-number {
@@ -233,7 +262,7 @@ body::before {
 }
 
 .form-group input:focus {
-    outline: 2px solid #ff6347;
+    outline: 2px solid #8fe3ff;
     background-color: #444;
 }
 
@@ -253,7 +282,7 @@ body::before {
 }
 
 .form-group textarea:focus {
-    outline: 2px solid #ff6347;
+    outline: 2px solid #8fe3ff;
     background-color: #444;
 }
 
@@ -261,7 +290,7 @@ body::before {
 .submit-btn {
     width: 100%;
     padding: 12px;
-    background-color: #ff6347; /* اللون الأساسي */
+    background-color: #8fe3ff; /* اللون الأساسي */
     color: #333; /* لون النص */
     border: none; /* إزالة الحدود */
     border-radius: 5px; /* زوايا مستديرة */
@@ -272,7 +301,7 @@ body::before {
 }
 
 .submit-btn:hover {
-    background-color: #ff6347; /* تغيير اللون عند التحويم */
+    background-color: #8fe3ff; /* تغيير اللون عند التحويم */
     transform: translateY(-2px); /* رفع الزر قليلاً */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* زيادة الظل عند التحويم */
 }
@@ -284,48 +313,44 @@ body::before {
 
 /* التصميم المتجاوب */
 @media (max-width: 600px) {
-    body {
-        padding: 15px; /* تقليل padding حول المحتوى */
-        overflow-x: hidden; /* منع التمرير الأفقي */
-    }
-
-    .navbar {
-        padding: 15px 20px; /* تقليل الحشوة في شريط التنقل */
-    }
-
-    .page-title {
-        font-size: 28px; /* تقليل حجم العنوان */
-        margin: 80px 0 5px 0; /* تقليل الهوامش */
-    }
-
-    .subtitle {
-        font-size: 16px; /* تقليل حجم العنوان الفرعي */
-    }
-
-    .contact-icons {
-        flex-direction: row; /* عرض الأيقونات بشكل أفقي */
-        justify-content: center; /* توسيط الأيقونات */
-        gap: 20px; /* تقليل المسافة بين الأيقونات */
-        margin-bottom: 20px; /* تقليل المسافة السفلية */
-    }
-
-    .contact-icon a {
-        font-size: 28px; /* تقليل حجم الأيقونات */
-    }
-
-    .contact-form {
-        width: 90%; /* جعل النموذج أكثر عرضاً */
-    }
-
     .form-group {
-        flex-direction: column; /* تغيير اتجاه الحقول إلى عمودي */
+        flex-direction: column; /* تغيير اتجاه العناصر في الحقل */
+        margin-bottom: 15px; /* تقليل المسافة بين الحقول */
     }
 
     .form-group input,
     .form-group textarea {
-        width: 100%; /* جعل الحقول تغطي العرض الكامل */
+        width: 100%; /* توسيع الحقول لتملأ العرض بالكامل */
         margin-bottom: 10px; /* إضافة مساحة بين الحقول */
     }
+
+    .contact-form {
+        padding: 15px; /* تقليل padding للنموذج */
+    }
+
+    .submit-btn {
+        font-size: 16px; /* تقليل حجم الخط في زر الإرسال */
+        padding: 10px; /* تقليل padding في زر الإرسال */
+    }
+    /* إعداد الصفحة */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* محتوى الصفحة */
+.main-content {
+    flex: 1; /* يأخذ المساحة المتبقية */
+    padding: 20px;
+    background-color: #8fe3ff; /* لون الخلفية للمحتوى */
+}
+
+/* نموذج الإرسال */
+.form-container {
+    margin-bottom: 20px; /* توفير مساحة تحت النموذج */
+}
 }
 
 
@@ -336,52 +361,116 @@ body::before {
     padding: 20px;
     font-size: 16px;
     background: rgba(0, 0, 0, 0.9);
-    border-top: 4px solid #ff6347;
+    border-top: 4px solid #8fe3ff;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
-    width: 100%;
+    margin-top: 40px;
 }
 
 .footer p {
     margin: 0;
-    color: #ff6347;
+    color: #8fe3ff;
     font-size: 18px;
     line-height: 1.5;
 }
 
 /* تحسين العرض على الشاشات الصغيرة */
-@media (max-width: 768px) {
-    .footer {
-        padding: 15px;
-        font-size: 14px;
-    }
-
-    .footer p {
-        font-size: 16px;
-        line-height: 1.4;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer {
-        padding: 10px;
-        font-size: 12px;
-    }
-
-    .footer p {
-        font-size: 14px;
-        line-height: 1.3;
-    }
-}
-
-
-/* تحسين العرض على الشاشات الصغيرة */
 @media (max-width: 600px) {
-        .footer {
-        padding: 15px; /* تقليل padding في الفوتر */
-        font-size: 14px; /* تقليل حجم الخط في الفوتر */
+    body {
+        padding: 15px; /* تقليل padding حول المحتوى */
+        overflow-x: hidden; /* منع التمرير الأفقي */
     }
 
+    .navbar {
+        padding: 10px 15px; /* تحسين padding لشريط التنقل */
+    }
 
+    .navbar-brand {
+        font-size: 28px; /* تقليل حجم اسم العلامة التجارية */
+    }
+
+    .navbar-links {
+        flex-direction: column; /* عرض القائمة بشكل عمودي */
+        width: 100%; /* جعل القائمة بعرض كامل */
+        text-align: center; /* توسيط النص في القائمة */
+        position: absolute; /* جعل القائمة تظهر فوق المحتوى */
+        top: 60px; /* مسافة من الأعلى */
+        left: 0; /* محاذاة لليسار */
+        background: rgba(0, 0, 0, 0.95); /* خلفية مظلمة للقائمة */
+        border-radius: 5px; /* زوايا مستديرة */
+        padding: 10px 0; /* إضافة padding للقائمة */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* إضافة ظل للقائمة */
+        display: none; /* إخفاء القائمة بشكل افتراضي */
+    }
+
+    .navbar-links.active {
+        display: flex; /* عرض القائمة عند تفعيلها */
+    }
+
+    .navbar-links li {
+        margin: 0px 0; /* زيادة المسافة بين العناصر في القائمة */
+    }
+
+    .page-title {
+        font-size: 28px; /* تقليل حجم العنوان الرئيسي */
+        margin: 80px 0 10px; /* تقليل المسافة العلوية */
+    }
+
+    .subtitle {
+        font-size: 16px; /* تقليل حجم النص الفرعي */
+        margin-bottom: 20px; /* زيادة المسافة السفلية */
+    }
+
+    .contact-icons {
+        flex-direction: row; /* عرض الأيقونات بشكل أفقي */
+        justify-content: center; /* توسيط الأيقونات */
+        gap: 20px; /* تقليل المسافة بين الأيقونات */
+        margin-bottom: 20px; /* تقليل المسافة السفلية */
+    }
+
+    .contact-icons a {
+        font-size: 28px; /* تقليل حجم الأيقونات */
+    }
+
+    .contact-number {
+        font-size: 14px; /* تقليل حجم النص تحت الأيقونات */
+    }
+
+    .contact-form {
+        width: 100%; /* جعل النموذج بعرض كامل */
+        padding: 15px; /* تقليل padding للنموذج */
+        margin: 0 auto; /* توسيط النموذج */
+        border-radius: 10px; /* زوايا مستديرة للنموذج */
+    }
+
+    .form-group {
+        flex-direction: column; /* تغيير اتجاه العناصر في الحقل */
+        margin-bottom: 15px; /* تقليل المسافة بين الحقول */
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%; /* توسيع الحقول لتملأ العرض بالكامل */
+        margin-bottom: 10px; /* إضافة مساحة بين الحقول */
+        font-size: 16px; /* تقليل حجم الخط في الحقول */
+        padding: 10px; /* تحسين padding للحقل */
+    }
+
+    .submit-btn {
+        font-size: 16px; /* تقليل حجم الخط في زر الإرسال */
+        padding: 12px; /* زيادة padding في زر الإرسال */
+    }
+
+    /* تحسين الصور أو الخلفيات */
+    img {
+        max-width: 100%; /* جعل الصور تأخذ عرض 100% */
+        height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    }
+
+    /* إخفاء الأيقونات الكبيرة */
+    .contact-icons a {
+        font-size: 24px; /* تقليل حجم الأيقونات */
+    }
+}
     </style>
     <!-- روابط لأيقونات التواصل الاجتماعي -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
