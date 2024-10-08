@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفيديوهات</title>
+
+    <!-- Favicon لتحسين تجربة المستخدم وإظهار أيقونة الموقع في شريط العنوان للمتصفح -->
+    <link rel="icon" href="logo/logo.png" type="image/x-icon">
+
+
+    <!-- وصف الموقع لتقديم فكرة واضحة عنه لمحركات البحث ووسائل التواصل الاجتماعي -->
+    <meta name="description" content="It's Not Over..........Until I WIN">
+    <!-- تحديد مؤلف الموقع لتحسين التخصيص -->
+    <meta name="author" content="Mr.Amr Salma">
+
+    <!-- ضمان التوافق مع متصفحات الويب القديمة -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- تحسين أداء تحميل الخطوط والخدمات الخارجية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <!-- Font Awesome for social icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+    /* إعدادات عامة */
+:root {
+    --primary-color: #8fe3ff;
+    --secondary-color: #1e1e1e;
+    --text-color: #fff;
+    --overlay-color: rgba(30, 30, 30, 0.8);
+    --navbar-bg: rgba(0, 0, 0, 0.95);
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+  /* إعدادات الجسم */
+body {
+    font-family: 'Arial', sans-serif; /* تغيير الخط */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* لضمان وجود الفوتر أسفل الصفحة */
+    background-color: #1e1e1e; /* لون الخلفية */
+    overflow: hidden;
+    min-height: 100vh; /* جعل الارتفاع 100% من ارتفاع العرض المرئي */
+    margin: 0; /* إلغاء أي هوامش افتراضية */
+    padding: 0; /* إلغاء أي حواف داخلية */
+    overflow-y: auto;
+}
+
+/* طبقة داكنة فوق الخلفية */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.8); /* لون داكن مع شفافية */
+    z-index: -1;
+}
+
+/* خلفية الصورة */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://almerja.com/medea/aklam/R/v16982236519662059959.jpg') no-repeat center center fixed; /* خلفية جديدة */
+    background-size: cover;
+    z-index: -1;
+}
+
+/* شريط التنقل */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--navbar-bg);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+    text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* زر القائمة (همبرغر) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.menu-toggle .bar {
+    width: 30px;
+    height: 3px;
+    background: var(--text-color);
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* قائمة التنقل */
+.navbar-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.navbar-links li {
+    margin: 0 15px;
+}
+
+.navbar-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.125rem;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: var(--primary-color);
+}
+
+.navbar-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.navbar-links a:hover::after {
+    width: 100%;
+}
+
+/* القائمة عند الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    /* تعديل المسافة بين الأزرار */
+    .navbar-links li {
+        margin-bottom: 8px; /* مسافة صغيرة جدًا بين الأزرار */
+    }
+
+    .navbar-links li:last-child {
+        margin-bottom: 0; /* إزالة المسافة عند آخر زر */
+    }
+}
+
+
+        /* عنوان الصفحة */
+.page-title {
+    text-align: center;
+    font-size: 48px; /* زيادة حجم الخط لجعل العنوان أكثر وضوحاً */
+    color: #8fe3ff; /* الحفاظ على اللون الذهبي الفاتح */
+    margin: 100px 0 20px 0; /* زيادة المسافة العلوية أكثر لتحريك العنوان للأسفل */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* زيادة عمق الظل لجعل العنوان بارزاً أكثر */
+    font-weight: bold; /* جعل الخط سميكاً لمزيد من الوضوح */
+}
+
+/* الأقسام */
+.section {
+    padding: 20px 10px;
+    text-align: center;
+    margin: 20px auto;
+    width: 90%;
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #8fe3ff;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* زيادة المسافة بين الفيديوهات */
+}
+
+.video-container {
+    width: 100%; /* عرض الفيديو 100% من العنصر الأب */
+    max-width: 300px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.video-title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.video-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+}
+
+/* تحسين العرض على الشاشات الصغيرة */
+@media (max-width: 600px) {
+    .section-title {
+        font-size: 24px; /* تصغير حجم العنوان */
+    }
+
+    .video-container {
+        max-width: 100%; /* عرض الفيديو على كامل الشاشة */
+    }
+
+    .video-title {
+        font-size: 14px; /* تصغير حجم خط العنوان */
+        padding: 3px 8px; /* تقليل الحواف الداخلية */
+    }
+
+    .video-details {
+        font-size: 12px; /* تصغير حجم النص */
+        margin-top: 5px; /* تقليل المسافة بين الفيديو والتفاصيل */
+    }
+
+    iframe {
+        height: 180px; /* تقليل ارتفاع الفيديو */
+    }
+
+    .video-gallery {
+        gap: 20px; /* تقليل المسافة بين الفيديوهات */
+    }
+}
+
+
+/* الفوتر */
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.9);
+    border-top: 4px solid #8fe3ff;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    margin-top: 40px;
+}
+
+.footer p {
+    margin: 0;
+    color: #8fe3ff;
+    font-size: 18px;
+    line-height: 1.5;
+}
+        /* تأثير الرسوم المتحركة للوجو والاسم */
+        .logo-container {
+            display: flex;
+            align-items: center; /* محاذاة العناصر عموديًا */
+            justify-content: center; /* محاذاة العناصر أفقيًا */
+            opacity: 0; /* إخفاء في البداية */
+            animation: logoFadeIn 1s forwards; /* تطبيق الرسوم المتحركة للوجو */
+            animation-delay: 0.5s; /* تأخير ظهور اللوجو */
+        }
+
+        .logo {
+            width: 50px; /* تحسين حجم اللوجو */
+            height: 50px;
+            margin-right: 10px; /* مسافة بين اللوجو والاسم */
+            border-radius: 50%; /* جعل اللوجو دائري */
+            overflow: hidden; /* إخفاء الأجزاء الزائدة */
+            object-fit: cover; /* ملائمة الصورة داخل الدائرة */
+        }
+
+        .name {
+            font-size: 20px; /* تحسين حجم خط الاسم */
+            opacity: 0; /* إخفاء في البداية */
+            transform: translateX(-50px); /* بداية الحركة من اليسار */
+            animation: nameSlideIn 1s forwards; /* تطبيق الرسوم المتحركة للاسم */
+            animation-delay: 1s; /* تأخير ظهور الاسم */
+        }
+
+        /* تأثير ظهور اللوجو */
+        @keyframes logoFadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* تأثير ظهور الاسم بحركة جانبية */
+        @keyframes nameSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px); /* الحركة من اليسار */
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0); /* العودة إلى الموقع الطبيعي */
+            }
+        }
+
+        /* إعدادات لجعل القائمة المنسدلة تعمل بشكل أفضل على الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .video-gallery {
+                flex-direction: column; /* ترتيب الفيديوهات عمودياً */
+                align-items: center; /* محاذاة العناصر في المنتصف */
+            }
+
+            .video-container {
+                max-width: 100%; /* عرض الفيديو 100% في الشاشات الصغيرة */
+            }
+
+            iframe {
+                height: 180px; /* ارتفاع الفيديو على الشاشات الصغيرة */
+            }
+
+            /* تحسين عرض اللوجو والاسم في الشاشات الصغيرة */
+            .logo-container {
+                justify-content: flex-start; /* محاذاة اللوجو والاسم إلى اليسار */
+            }
+
+            .logo {
+                width: 40px; /* تقليل حجم اللوجو في الشاشات الصغيرة */
+                height: 40px;
+            }
+
+            .name {
+                font-size: 18px; /* تقليل حجم خط الاسم في الشاشات الصغيرة */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-brand">Mr.Amr</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar-links" id="navbar-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="video.html">فيديوهات</a></li>
+            <li><a href="concepts.html">المفاهيم</a></li>
+            <li><a href="exams.html">الاختبارات</a></li>
+            <li><a href="help.html">المساعدة</a></li>
+        </ul>
+    </nav>
+
+    <!-- عنوان الصفحة -->
+    <div class="page-title">فيديوهات</div>
+
+    <div class="section">
+        <h2 class="section-title">فيزياء</h2>
+        <div class="video-gallery">
+            <div class="video-container">
+                <div class="video-title">3امتحان المطرشم</div>
+                <iframe src="video/امتحان المطرشم.mp4" allowfullscreen></iframe>
+                <div class="video-details">
+                    <div class="logo-container">
+                        <img src="logo/logo.ico" alt="لوجو" class="logo">
+                        <span class="name">Mr.Amr</span>
+                    </div>
+                    <div class="date-time">08-10 | 8:00 PM</div>
+                </div>
+            </div>
+            <div class="video-container">
+                <div class="video-title">مفارقة غريبة</div>
+                <iframe src="video/فيديو1.mp4" allowfullscreen></iframe>
+                <div class="video-details">
+                    <div class="logo-container">
+                        <img src="logo/logo.ico" alt="لوجو" class="logo">
+                        <span class="name">Mr.Amr</span>
+                    </div>
+                    <div class="date-time">08-10 | 8:00 PM</div>
+                </div>
+            </div>
+            <div class="video-container">
+                <div class="video-title">قراءة الفولتميتر و إضاءة المصابيح</div>
+                <iframe src="https://www.youtube.com/embed/OKPWmBrmBi0?si=mFjxFcpmrIrclHab" allowfullscreen></iframe>
+                <div class="video-details">
+                    <div class="logo-container">
+                        <img src="logo/logo.ico" alt="لوجو" class="logo">
+                        <span class="name">Mr.Amr</span>
+                    </div>
+                    <div class="date-time">08-10 | 8:00 PM</div>
+                </div>
+            </div>
+
+            <!-- يمكنك إضافة المزيد من الفيديوهات بنفس النمط -->
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <p>أنت و السيطرة تحت الفيزياء</p>
+    </footer>
+
+    <script>
+        // قائمة التنقل
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbarLinks = document.getElementById('navbar-links');
+
+        menuToggle.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
